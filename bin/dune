@@ -1,4 +1,4 @@
 (executable
  (public_name owoify_ml)
  (name main)
- (libraries owoify_ml))
+ (libraries owoify_ml str))

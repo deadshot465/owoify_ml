@@ -6,7 +6,7 @@ module OwoifyWord = struct
     replaced_words: StringSet.t
   }
 
-  let empty = {
+  let empty () = {
     inner_word = "";
     replaced_words = StringSet.empty
   }
