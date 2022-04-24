@@ -1,0 +1,3 @@
+(library
+ (name owoify_ml_word)
+ (libraries owoify_ml_string_set))
