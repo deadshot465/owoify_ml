@@ -3,5 +3,9 @@ let () =
   let is_matched = Str.string_match re "Natsumi" 0 in
   print_endline (Bool.to_string is_matched);
   print_endline (Str.matched_group 0 "Natsumi");
-  print_endline (Str.matched_group 1 "Natsumi");
+  (* print_endline (Str.matched_group 1 "Natsumi"); *)
+  try
+    print_endline (Str.matched_group 2 "Natsumi");
+  with
+    _ -> print_endline "Failed!";
   ()
