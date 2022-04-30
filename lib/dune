@@ -1,2 +1,3 @@
 (library
- (name owoify_ml))
+ (name owoify_ml)
+ (libraries owoify_ml_utility))
