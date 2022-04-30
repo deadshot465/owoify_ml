@@ -1,6 +1,6 @@
 open Owoify_ml_string_set.String_set
 
-module OwoifyWord = struct
+module Word = struct
   type t = {
     inner_word: string;
     replaced_words: StringSet.t
@@ -26,7 +26,7 @@ module OwoifyWord = struct
   let replace_string to_be_replaced replace_value s =
     Str.global_replace (Str.regexp to_be_replaced) replace_value s
 
-  let replace word search_value replace_value replace_replaced_words =
+  let replace ?(replace_replaced_words = false) search_value replace_value word =
     if (replace_replaced_words |> not) && (search_value_contains_replaced_words word search_value replace_value) then
       word
     else (
@@ -48,7 +48,7 @@ module OwoifyWord = struct
         word
     )
 
-  let replace_with_func_single word search_value func replace_replaced_words =
+  let replace_with_func_single ?(replace_replaced_words = false) search_value func word =
     let replace_value = func () in
     if (replace_replaced_words |> not) && (search_value_contains_replaced_words word search_value replace_value) then
       word
@@ -72,7 +72,7 @@ module OwoifyWord = struct
       else
         word
 
-  let replace_with_func_multiple word search_value func replace_replaced_words = 
+  let replace_with_func_multiple ?(replace_replaced_words = false) search_value func word = 
     let matched = Str.string_match search_value word.inner_word 0 in
     if matched |> not then
       word

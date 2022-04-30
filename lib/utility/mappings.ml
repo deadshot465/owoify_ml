@@ -1,4 +1,6 @@
-module OwoifyMappings = struct
+open Owoify_ml_word.Word
+
+module Mappings = struct
   let o_to_owo = Str.regexp "o"
   let ew_to_uwu = Str.regexp "ew"
   let hey_to_hay = Str.regexp "\\([Hh]\\)ey"
@@ -92,5 +94,20 @@ module OwoifyMappings = struct
     "¯\\_(ツ)_/¯"
   |]
 
+  let map_o_to_owo word =
+    let replacement = if (Random.int 2 > 0) then
+      "owo"
+    else
+      "o"
+    in
+    Word.replace o_to_owo replacement word
+
+  let map_ew_to_uwu word = Word.replace ew_to_uwu "uwu" word
+  let map_hey_to_hay word = Word.replace hey_to_hay "\\1ay" word
   
+  let map_dead_to_ded word =
+    Word.replace dead_to_ded_upper "Ded" word
+    |> Word.replace dead_to_ded_lower "ded"
+
+  let map_n_vowel_t_to_nd word = Word.replace n_vowel_t_to_nd "nd" word
 end
